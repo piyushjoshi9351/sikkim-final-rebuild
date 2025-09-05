@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "name": "Rumtek Monastery",
+    "district": "East Sikkim",
+    "tradition": "Karma Kagyu",
+    "altitude": 1500,
+    "lat": 27.3389,
+    "lng": 88.6050,
+    "access": "Road accessible, 30 min from Gangtok",
+    "notes": "One of the most important centers of Kagyu Buddhism, known for its elaborate architecture and vibrant ceremonies.",
+    "images": [
+      "assets/img/rumtek1.jpg",
+      "assets/img/rumtek2.jpg",
+      "assets/img/rumtek3.jpg"
+    ],
+    "pano": "assets/img/panos/rumtek.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Pemayangtse Monastery",
+    "district": "West Sikkim",
+    "tradition": "Nyingma",
+    "altitude": 2085,
+    "lat": 27.2850,
+    "lng": 88.6111,
+    "access": "30 km from Pelling, accessible by road",
+    "notes": "Founded in 1705, it is one of the oldest and most revered monasteries in Sikkim, known for its beautiful murals and ceremonies.",
+    "images": [
+      "assets/img/pemayangtse1.jpg",
+      "assets/img/pemayangtse2.jpg",
+      "assets/img/pemayangtse3.jpg"
+    ],
+    "pano": "assets/img/panos/pemayangtse.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Enchey Monastery",
+    "district": "East Sikkim",
+    "tradition": "Nyingma",
+    "altitude": 1700,
+    "lat": 27.3300,
+    "lng": 88.6147,
+    "access": "2 km from Gangtok city center",
+    "notes": "A 200-year-old Vajrayana Buddhist monastery amidst pine forests, famous for its annual dances and rituals.",
+    "images": [
+      "assets/img/enchey1.jpg",
+      "assets/img/enchey2.jpg",
+      "assets/img/enchey3.jpg"
+    ],
+    "pano": "assets/img/panos/enchey.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Dubdi Monastery",
+    "district": "West Sikkim",
+    "tradition": "Nyingma",
+    "altitude": 2200,
+    "lat": 27.2833,
+    "lng": 88.2217,
+    "access": "20 km from Pelling, trekking path available",
+    "notes": "The oldest monastery in Sikkim, established in 1701, known for its simple architecture and historical significance.",
+    "images": [
+      "assets/img/dubdi1.jpg",
+      "assets/img/dubdi2.jpg",
+      "assets/img/dubdi3.jpg"
+    ],
+    "pano": "assets/img/panos/dubdi.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Tashiding Monastery",
+    "district": "West Sikkim",
+    "tradition": "Nyingma",
+    "altitude": 1750,
+    "lat": 27.2639,
+    "lng": 88.4306,
+    "access": "Accessible by road via Singtam-Pelling route",
+    "notes": "Known for its sacred Bumchu festival and panoramic views of the surrounding hills and rivers.",
+    "images": [
+      "assets/img/tashiding1.jpg",
+      "assets/img/tashiding2.jpg",
+      "assets/img/tashiding3.jpg"
+    ],
+    "pano": "assets/img/panos/tashiding.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Phodong Monastery",
+    "district": "North Sikkim",
+    "tradition": "Kagyu",
+    "altitude": 4500,
+    "lat": 27.2944,
+    "lng": 88.4917,
+    "access": "Accessible by road from Gangtok, permits required",
+    "notes": "Established in 1740, it houses around 260 monks and is famous for its grand assembly hall.",
+    "images": [
+      "assets/img/phodong1.jpg",
+      "assets/img/phodong2.jpg",
+      "assets/img/phodong3.jpg"
+    ],
+    "pano": "assets/img/panos/phodong.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Phensang Monastery",
+    "district": "North Sikkim",
+    "tradition": "Nyingma",
+    "altitude": 1721,
+    "lat": 27.3075,
+    "lng": 88.4861,
+    "access": "Accessible from Lachung town, 30 km trek uphill",
+    "notes": "Founded in 1721, rebuilt in 1948 after a fire, known for its quiet ambiance and scenic surroundings.",
+    "images": [
+      "assets/img/phensang1.jpg",
+      "assets/img/phensang2.jpg",
+      "assets/img/phensang3.jpg"
+    ],
+    "pano": "assets/img/panos/phensang.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Ralang Monastery",
+    "district": "South Sikkim",
+    "tradition": "Karma Kagyu",
+    "altitude": 2100,
+    "lat": 27.1889,
+    "lng": 88.6250,
+    "access": "Near Ravangla, accessible by road",
+    "notes": "Known for its vibrant Pang Lhabsol festival and impressive collection of Buddhist relics.",
+    "images": [
+      "assets/img/ralang1.jpg",
+      "assets/img/ralang2.jpg",
+      "assets/img/ralang3.jpg"
+    ],
+    "pano": "assets/img/panos/ralang.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Tendong Monastery",
+    "district": "South Sikkim",
+    "tradition": "Nyingma",
+    "altitude": 850,
+    "lat": 27.0778,
+    "lng": 88.6072,
+    "access": "Located on Tendong Hill, reachable via short trek",
+    "notes": "Situated on Tendong Hill, offering panoramic views and peaceful surroundings.",
+    "images": [
+      "assets/img/tendong1.jpg",
+      "assets/img/tendong2.jpg",
+      "assets/img/tendong3.jpg"
+    ],
+    "pano": "assets/img/panos/tendong.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Sang Monastery",
+    "district": "South Sikkim",
+    "tradition": "Gelug",
+    "altitude": 1200,
+    "lat": 27.1111,
+    "lng": 88.5283,
+    "access": "Accessible by road from Namchi",
+    "notes": "A serene monastery known for its peaceful ambiance, meditation halls, and beautiful architecture.",
+    "images": [
+      "assets/img/sang1.jpg",
+      "assets/img/sang2.jpg",
+      "assets/img/sang3.jpg"
+    ],
+    "pano": "assets/img/panos/sang.jpg"
+  }
+]

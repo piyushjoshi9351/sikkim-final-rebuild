@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home — Sikkim Monasteries</title>
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="assets/css/theme.css">
+
+<!-- App JS -->
+<script src="assets/js/app.js" defer></script>
+
+<style>
+/* ==== Enhanced Home Page Styles ==== */
+
+/* Smooth fade animations */
+.fade-in { animation: fadeIn 1s ease forwards; opacity: 0; }
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+/* Hero section with background */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 60px;
+  align-items: center;
+}
+.hero-bg {
+  background: url("https://images.unsplash.com/photo-1586363104860-d6e5b7d2d7a8?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+  border-radius: 18px;
+  padding: 40px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(255,92,138,0.4));
+  border-radius: 18px;
+}
+.hero-content { position: relative; z-index: 2; }
+.h-title { font-size: 2.8rem; font-weight: 800; line-height: 1.2; }
+.h-grad { background: linear-gradient(90deg,#ff5c8a,#ffcd3c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.h-desc { margin-top: 12px; font-size: 1.2rem; color: #e2e8f0; }
+
+/* Buttons */
+.btn { padding:10px 20px; border-radius:10px; text-decoration:none; font-weight:600; transition:0.3s; display:inline-block; }
+.btn-primary { background:#ff5c8a; color:#fff; }
+.btn-primary:hover { background:#ff3c6a; transform:scale(1.05); }
+.btn-soft { background:rgba(255,255,255,0.9); color:#111; }
+.btn-soft:hover { background:#f3f4f6; transform:scale(1.05); }
+
+/* Cards */
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; margin-top:20px; }
+.card {
+  background:#fff; border-radius:14px; overflow:hidden;
+  box-shadow:0 6px 24px rgba(0,0,0,.08);
+  transition:0.35s ease;
+  transform: translateY(20px);
+  opacity: 0;
+}
+.card.show { opacity: 1; transform: translateY(0); }
+.card img { width:100%; height:180px; object-fit:cover; }
+.card h3 { margin:10px 12px 4px; font-size:1.2rem; font-weight:700; }
+.card p { margin:0 12px 12px; color:#64748b; font-size:0.95rem; }
+
+/* Hero panel with rotating text */
+.hero-panel {
+  background: linear-gradient(120deg,#ff5c8a,#ffcd3c);
+  border-radius:18px;
+  height:320px;
+  box-shadow:0 4px 20px rgba(0,0,0,.2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:1.6rem;
+  font-weight:700;
+  text-align:center;
+  padding:20px;
+  line-height:1.4;
+  transition:0.5s;
+}
+.hero-panel:hover { transform: scale(1.02); }
+
+/* Modal */
+.modal[aria-hidden="false"] { display:flex; }
+.modal {
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.6); backdrop-filter: blur(6px);
+  align-items:center; justify-content:center; z-index:1000;
+  animation: fadeIn 0.5s ease;
+}
+.modal-content {
+  background:#fff; border-radius:16px;
+  max-width:900px; width:95%;
+  display:flex; flex-wrap:wrap; gap:16px;
+  padding:24px; position:relative;
+  animation: slideUp 0.4s ease;
+}
+@keyframes slideUp { from { transform:translateY(40px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+.modal-left img { max-width:400px; border-radius:12px; }
+.modal-right { flex:1; display:flex; flex-direction:column; }
+.thumbbar { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.thumbbar img { width:60px; height:40px; object-fit:cover; cursor:pointer; border-radius:6px; border:2px solid transparent; transition:0.3s; }
+.thumbbar img:hover { border-color:#ff5c8a; }
+
+/* Responsive */
+@media(max-width:900px){
+  .hero { grid-template-columns:1fr; }
+  .modal-content { flex-direction:column; align-items:center; }
+  .modal-left img { max-width:100%; }
+}
+</style>
+</head>
+
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Dharma_wheel.svg/1024px-Dharma_wheel.svg.png" alt="logo">
+      <strong>Sikkim Monasteries</strong>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="map.html">Map</a>
+      <a href="about.html">About</a>
+      <a href="view360.html">360°</a>
+      <a href="guide.html">Visitor Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container fade-in">
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-content">
+        <h1 class="h-title">Explore <span class="h-grad">Sikkim’s Monastic Heritage</span></h1>
+        <p class="h-desc">Discover ancient monasteries, breathtaking landscapes, interactive features, and immersive 360° views.</p>
+        <div style="margin-top:18px">
+          <a class="btn btn-primary" href="explore.html">Start Exploring</a>
+          <a class="btn btn-soft" href="map.html">Open Map</a>
+        </div>
+      </div>
+    </div>
+    <!-- Animated Hero Panel -->
+    <div class="hero-panel fade-in" id="hero-panel" style="animation-delay:0.5s">
+      Loading...
+    </div>
+  </section>
+
+  <section class="section fade-in" style="animation-delay:0.8s">
+    <h2 style="margin-bottom:12px">✨ Featured Monasteries</h2>
+    <div id="featured" class="cards"></div>
+  </section>
+</main>
+
+<footer class="footer">© 2025 Sikkim Monasteries — Designed with ❤️</footer>
+
+<!-- Modal -->
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-left">
+      <img id="modal-image" src="" alt="Monastery image">
+    </div>
+    <div class="modal-right">
+      <h2 id="modal-title" style="margin:0"></h2>
+      <div id="modal-meta" class="meta" style="margin-top:6px"></div>
+      <p id="modal-notes" class="meta" style="margin-top:10px"></p>
+      <div id="modal-thumbs" class="thumbbar"></div>
+      <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+        <a id="modal-360" class="btn btn-soft" href="#">Open 360°</a>
+        <a id="modal-directions" class="btn btn-soft" target="_blank">Open in Google Maps</a>
+      </div>
+    </div>
+    <button id="modal-close" class="btn btn-primary" style="position:absolute;right:18px;top:18px">Close</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const res = await fetch('data/monasteries.json');
+    const D = await res.json();
+
+    // Animate cards on load
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.2 });
+
+    // Featured Monasteries
+    const featured = document.getElementById('featured');
+    D.slice(0,6).forEach(it => {
+      const card = document.createElement('div');
+      card.className='card';
+      card.innerHTML=`
+        <img src="${it.images?.[0] || 'https://via.placeholder.com/320x200'}" alt="${it.name}">
+        <h3>${it.name}</h3>
+        <p>${it.district} • ${it.tradition}</p>
+      `;
+      observer.observe(card);
+      card.addEventListener('click',()=>{
+        document.getElementById('modal').setAttribute('aria-hidden','false');
+        document.getElementById('modal-image').src=it.images?.[0] || '';
+        document.getElementById('modal-title').textContent=it.name;
+        document.getElementById('modal-meta').textContent=`${it.district} • ${it.tradition}`;
+        document.getElementById('modal-notes').textContent=it.notes || '';
+        const thumbbar = document.getElementById('modal-thumbs');
+        thumbbar.innerHTML='';
+        (it.images||[]).forEach(img=>{
+          const t = document.createElement('img'); t.src=img; t.alt=it.name;
+          t.addEventListener('click',()=>document.getElementById('modal-image').src=img);
+          thumbbar.appendChild(t);
+        });
+        const btn360 = document.getElementById('modal-360');
+        if(it.pano){ btn360.href=it.pano; btn360.style.display='inline-block'; } else btn360.style.display='none';
+        const btnMap = document.getElementById('modal-directions');
+        if(it.lat && it.lng){ btnMap.href=`https://www.google.com/maps?q=${it.lat},${it.lng}`; btnMap.style.display='inline-block'; } else btnMap.style.display='none';
+      });
+      featured.appendChild(card);
+    });
+
+    document.getElementById('modal-close').addEventListener('click',()=>document.getElementById('modal').setAttribute('aria-hidden','true'));
+
+    // Hero panel rotating text
+    const phrases = [
+      "Discover Sikkim's architectural wonders 🏯",
+      "Capture the Himalayan serenity 🌄",
+      "Explore hidden monastery gems ✨",
+      "Experience culture, colors, and history 🎨"
+    ];
+    let i = 0;
+    const panel = document.getElementById('hero-panel');
+    function rotateText() {
+      panel.textContent = phrases[i];
+      i = (i + 1) % phrases.length;
+    }
+    rotateText();
+    setInterval(rotateText, 3500);
+
+  } catch(err){ console.error('Failed to load monastery data:',err); }
+});
+</script>
+
+</body>
+</html>

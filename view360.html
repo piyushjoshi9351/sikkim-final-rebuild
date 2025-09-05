@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>360° View — Sikkim Monasteries</title>
+
+<!-- Theme -->
+<link rel="stylesheet" href="assets/css/theme.css" />
+
+<!-- Pannellum CSS -->
+<link rel="stylesheet" href="https://unpkg.com/pannellum/build/pannellum.css" />
+
+<style>
+/* Page-level adjustments */
+#pano {
+  width: 100%;
+  height: 70vh;
+  border-radius: 18px;
+  box-shadow: var(--shadow, 0 12px 28px rgba(0,0,0,.12));
+  background: #000;
+  overflow: hidden;
+  animation: fadeIn 1s ease;
+}
+
+.viewer-wrap { 
+  margin-top: 24px; 
+  display: grid; 
+  gap: 24px; 
+}
+
+.panel {
+  padding: 18px;
+  border-radius: 14px;
+  background: #f9fafb;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  animation: fadeInUp 0.8s ease;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.gallery-grid img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(15,23,42,.06);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-grid img:hover { 
+  transform: scale(1.06); 
+  box-shadow: 0 10px 22px rgba(15,23,42,.12);
+}
+
+.meta {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--muted,#475569);
+}
+
+.btn-soft {
+  background: #e2e8f0;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.btn-soft:hover {
+  background: var(--accent,#ff5c8a);
+  color: #fff;
+}
+
+@media (max-width:760px){ #pano { height:56vh } }
+
+@keyframes fadeIn {
+  from { opacity:0; transform: scale(0.97);}
+  to { opacity:1; transform: scale(1);}
+}
+@keyframes fadeInUp {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Dharma_wheel.svg/1024px-Dharma_wheel.svg.png" alt="logo" />
+      <strong>Sikkim Monasteries</strong>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="map.html">Map</a>
+      <a href="about.html">About</a>
+      <a class="active" href="view360.html">360°</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container section">
+  <h1 id="m-name">360° View</h1>
+  <div class="meta" id="m-meta">Loading monastery details…</div>
+
+  <div class="viewer-wrap">
+    <div id="pano" aria-hidden="true"></div>
+
+    <div class="panel">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+        <h3 style="margin:0">Photo Gallery</h3>
+        <div>
+          <button id="btn-print" class="btn-soft" title="Print page">🖨 Print</button>
+          <a id="btn-google" class="btn-soft" href="#" target="_blank" style="margin-left:8px">🌍 Google Maps</a>
+        </div>
+      </div>
+
+      <p id="m-notes" class="meta"></p>
+      <div id="m-gallery" class="gallery-grid"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">© 2025 Sikkim Monasteries</footer>
+
+<!-- Pannellum JS -->
+<script src="https://unpkg.com/pannellum/build/pannellum.js"></script>
+
+<script>
+async function fetchData(url) {
+  const r = await fetch(url, { cache: "no-cache" });
+  if (!r.ok) throw new Error("Failed to load " + url);
+  return r.json();
+}
+
+function getIdFromQuery() {
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  return id ? Number(id) : NaN;
+}
+
+(async function init() {
+  try {
+    const DATA = await fetchData('data/monasteries.json');
+    const id = getIdFromQuery();
+    const item = DATA.find(d => d.id === id) || DATA[0];
+
+    document.getElementById('m-name').textContent = item.name;
+    document.getElementById('m-meta').textContent = `${item.district} • ${item.tradition} • Alt ${item.altitude ?? 'N/A'}m`;
+    document.getElementById('m-notes').textContent = item.notes || '';
+
+    const gm = document.getElementById('btn-google');
+    if (item.lat && item.lng) {
+      gm.href = `https://www.google.com/maps?q=${item.lat},${item.lng}`;
+      gm.style.display = 'inline-block';
+    } else gm.style.display = 'none';
+
+    const gallery = document.getElementById('m-gallery');
+    gallery.innerHTML = '';
+    (item.images || []).forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = item.name;
+      img.loading = 'lazy';
+      img.addEventListener('click', () => window.open(src,'_blank'));
+      gallery.appendChild(img);
+    });
+
+    document.getElementById('btn-print').addEventListener('click', ()=> window.print());
+
+    const panoContainer = document.getElementById('pano');
+    panoContainer.innerHTML = '';
+    if (item.pano) {
+      pannellum.viewer('pano', {
+        type: 'equirectangular',
+        panorama: item.pano,
+        autoLoad: true,
+        autoRotate: -2,
+        compass: false,
+        showFullscreenCtrl: true,
+        showControls: true
+      });
+    } else {
+      panoContainer.innerHTML = `<div style="padding:30px;text-align:center;color:var(--muted,#64748b)">
+        360° view not available yet for this monastery.<br>
+        <small>Use the gallery or add a panorama in <code>data/monasteries.json</code> & assets/img/panos/.</small>
+      </div>`;
+    }
+  } catch(err) {
+    console.error(err);
+    document.getElementById('m-name').textContent = 'Error loading 360° view';
+    document.getElementById('m-meta').textContent = '';
+    document.getElementById('pano').innerHTML = '<div style="padding:20px;color:#b91c1c">Failed to load data. Make sure <code>data/monasteries.json</code> exists.</div>';
+  }
+})();
+</script>
+</body>
+</html>

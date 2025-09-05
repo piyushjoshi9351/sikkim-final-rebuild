@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — Sikkim Monasteries</title>
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="assets/css/theme.css">
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+<!-- App JS -->
+<script src="assets/js/app.js" defer></script>
+
+<style>
+/* ==== Page Specific Styling ==== */
+
+/* Hero */
+.about-hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #ff5c8a20, #ffcd3c20);
+  border-radius: 18px;
+  margin-bottom: 40px;
+  animation: fadeIn 1s ease;
+}
+.about-hero .h-title { font-size: 2.5rem; }
+.about-hero .h-desc { max-width: 720px; margin: 12px auto; }
+
+/* Section blocks */
+.about-section {
+  margin: 40px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+.about-section h2 { font-size: 1.8rem; margin-bottom: 10px; }
+.about-section p { font-size: 1.05rem; color: #475569; }
+.about-img {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.about-img:hover { transform: scale(1.05); }
+
+/* Map */
+.about-map { margin: 50px 0; text-align:center; }
+#about-map { box-shadow: 0 6px 30px rgba(0,0,0,0.12); }
+
+/* Animations */
+.fade-in { opacity: 0; transform: translateY(20px); transition: 0.6s; }
+.fade-in.show { opacity: 1; transform: translateY(0); }
+
+/* Responsive */
+@media(max-width:900px){
+  .about-section { grid-template-columns: 1fr; }
+  .about-section img { order: -1; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Dharma_wheel.svg/1024px-Dharma_wheel.svg.png" alt="logo">
+      <strong>Sikkim Monasteries</strong>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="map.html">Map</a>
+      <a href="about.html" class="active">About</a>
+      <a href="view360.html">360°</a>
+      <a href="guide.html">Visitor Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container section">
+  <section class="about-hero">
+    <h1 class="h-title">Discover <span class="h-grad">Sikkim’s Monastic Heritage</span></h1>
+    <p class="h-desc">Sikkim is home to over 200 Buddhist monasteries that represent centuries of spiritual and cultural history. Explore their traditions, architecture, and breathtaking locations.</p>
+    <div style="margin-top:18px">
+      <a class="btn btn-primary" href="explore.html">Start Exploring</a>
+      <a class="btn btn-soft" href="map.html">View Map</a>
+    </div>
+  </section>
+
+  <section class="about-section fade-in">
+    <div>
+      <h2>History of Sikkim Monasteries</h2>
+      <p>Sikkim monasteries are an integral part of the state's cultural heritage. Many were established in the 17th and 18th centuries, representing the Nyingma, Kagyu, and Gelug traditions of Tibetan Buddhism. They serve as centers for religious learning, festivals, and meditation.</p>
+    </div>
+    <img src="assets/img/rumtek1.jpg" alt="Rumtek Monastery" class="about-img">
+  </section>
+
+  <section class="about-section fade-in">
+    <div>
+      <h2>Significance and Culture</h2>
+      <p>These monasteries host vibrant festivals like Bumchu, Pang Lhabsol, and Chaam dances, showcasing the spiritual life of Sikkimese people. Visitors can witness prayer rituals, stunning architecture, and panoramic Himalayan views.</p>
+    </div>
+    <img src="assets/img/pemayangtse1.jpg" alt="Pemayangtse Monastery" class="about-img">
+  </section>
+
+  <section class="about-map fade-in">
+    <h2>Monasteries on the Map</h2>
+    <div id="about-map" style="height:420px;border-radius:16px;overflow:hidden;"></div>
+    <p class="meta" style="margin-top:10px">Interactive map of selected monasteries across Sikkim.</p>
+  </section>
+</main>
+
+<footer class="footer">© 2025 Sikkim Monasteries — Explore, Learn, Experience</footer>
+
+<!-- Modal -->
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-left"><img id="modal-image" src="" alt="Monastery image"></div>
+    <div class="modal-right">
+      <h2 id="modal-title" style="margin:0"></h2>
+      <div id="modal-meta" class="meta" style="margin-top:6px"></div>
+      <p id="modal-notes" class="meta" style="margin-top:10px"></p>
+      <div id="modal-thumbs" class="thumbbar"></div>
+      <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+        <a id="modal-360" class="btn btn-soft" href="#">Open 360°</a>
+        <a id="modal-directions" class="btn btn-soft" target="_blank">Open in Google Maps</a>
+      </div>
+    </div>
+    <button id="modal-close" class="btn btn-primary" style="position:absolute;right:18px;top:18px">Close</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const res = await fetch('data/monasteries.json');
+    const D = await res.json();
+
+    // About page map
+    if (window.L) {
+      const map = L.map('about-map', {zoomControl:true}).setView([27.33,88.45], 9);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+      D.slice(0,50).forEach(it => {
+        if(it.lat && it.lng){
+          const marker = L.marker([it.lat,it.lng]).addTo(map);
+          marker.bindPopup(`<strong>${it.name}</strong><br>${it.district} • ${it.tradition}`);
+        }
+      });
+    }
+
+    // Fade-in animation on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold:0.2 });
+    document.querySelectorAll(".fade-in").forEach(el=>observer.observe(el));
+
+  } catch(err) {
+    console.error('Failed to load monastery data:', err);
+  }
+
+  // Close modal
+  document.getElementById('modal-close').addEventListener('click', () => {
+    document.getElementById('modal').setAttribute('aria-hidden','true');
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visitor Guide — Sikkim Monasteries</title>
+<link rel="stylesheet" href="assets/css/theme.css">
+
+<style>
+/* Page Specific */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  margin-bottom: 40px;
+  animation: fadeIn 1.2s ease;
+}
+.hero h1 {
+  font-size: 2.4rem;
+  color: var(--accent, #ff5c8a);
+}
+.hero p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #475569;
+}
+
+.guide-section {
+  margin-bottom: 40px;
+  animation: fadeInUp 1s ease;
+}
+.guide-section h2 {
+  margin-bottom: 16px;
+  color: var(--accent,#ff5c8a);
+  font-size: 1.6rem;
+}
+.guide-section p {
+  line-height: 1.6;
+  color: #334155;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+}
+.tips-list li {
+  background: #f1f5f9;
+  margin: 8px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s;
+}
+.tips-list li:hover {
+  transform: translateX(5px);
+  background: #e2e8f0;
+}
+
+.tips-list li::before {
+  content: "✔";
+  color: var(--accent, #ff5c8a);
+  font-weight: bold;
+}
+
+.links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.links a {
+  text-decoration: none;
+  background: var(--accent,#ff5c8a);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+.links a:hover {
+  background: #e04875;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.97);}
+  to {opacity: 1; transform: scale(1);}
+}
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Dharma_wheel.svg/1024px-Dharma_wheel.svg.png" alt="logo">
+      <strong>Sikkim Monasteries</strong>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="map.html">Map</a>
+      <a href="about.html">About</a>
+      <a href="view360.html">360°</a>
+      <a class="active" href="guide.html">Visitor Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container section">
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Visitor Guide</h1>
+    <p>Your complete companion for exploring the sacred monasteries of Sikkim.</p>
+  </div>
+
+  <!-- Travel Tips -->
+  <section class="guide-section">
+    <h2>Travel Tips</h2>
+    <ul class="tips-list">
+      <li>Best time to visit: March to June & September to November.</li>
+      <li>Carry comfortable walking shoes for monastery tours.</li>
+      <li>Respect local customs and traditions.</li>
+      <li>Photography may be restricted inside certain temples.</li>
+      <li>Altitude can affect health; keep hydrated and rest often.</li>
+    </ul>
+  </section>
+
+  <!-- Facilities -->
+  <section class="guide-section">
+    <h2>Nearby Facilities</h2>
+    <p>Hotels, restaurants, and emergency services are available near major monasteries.</p>
+    <div class="links">
+      <a href="https://www.booking.com" target="_blank">Hotels</a>
+      <a href="https://www.zomato.com" target="_blank">Food</a>
+      <a href="https://www.redbus.in" target="_blank">Bus Booking</a>
+      <a href="tel:+911234567890">Emergency Contact</a>
+    </div>
+  </section>
+
+  <!-- Things to Know -->
+  <section class="guide-section">
+    <h2>Things to Know</h2>
+    <p>Monasteries are peaceful places. Maintain silence, avoid littering, and dress modestly. Respect monks and local residents.</p>
+  </section>
+</main>
+
+<footer class="footer">© 2025 Sikkim Monasteries</footer>
+
+</body>
+</html>
